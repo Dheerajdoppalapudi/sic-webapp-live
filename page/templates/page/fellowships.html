@@ -1,0 +1,163 @@
+{% extends "page/base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  .fullcontainer{
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .card-body{
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    /* font-weight: bold; */
+  }
+  .card-body h4 a {
+    font-weight: bold;
+  }
+    .heading {
+    font-family: "Inter", sans-serif;
+    margin: 50px;
+  }
+  .heading h1 {
+    font-weight: bolder;
+    text-align: center;
+    margin: 20px;
+  }
+    .fullcontainer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .fullcontainer > div {
+        margin: 10px;
+        padding: 10px;
+        width: 350px;
+    }
+    .card-title{
+        color: rgb(61, 61, 61);
+        text-decoration: none;
+    }
+    .card-subtitle{
+        color: #2092ed;
+    }
+   
+    .cardtwo {
+   
+    box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+      0 5px 15px 0 rgba(37, 44, 97, 0.15);
+    border-radius: 15px;
+    margin: 8px;
+    padding: 10px 15px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 265px;
+    transition: 0.7s;
+
+    
+    }
+    .cardtwo:hover {
+      background-color: #FFDEE9;
+background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+
+
+    color:black;
+    transform: scale(1.1);
+    z-index: 9;
+    }
+    .cardtwo:hover::before{
+        background: rgb(85 108 214 / 10%);
+    }
+    .cardtwo:before {
+    content: "";
+    position: absolute;
+    background: rgb(85 108 214 / 5%);
+    width: 170px;
+    height: 400px;
+    z-index: -1;
+    transform: rotate(42deg);
+    right: -56px;
+    top: -23px;
+    border-radius: 35px;
+  }
+
+  .hover_color_bubble {
+    position: absolute;
+    background: rgb(54 81 207 / 15%);
+    width: 100rem;
+    height: 100rem;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    top: 16rem;
+    border-radius: 50%;
+    transform: rotate(-36deg);
+    left: -18rem;
+    transition: 0.7s;
+  }
+  .cardtwo:hover .hover_color_bubble {
+    top: 0rem;
+  }
+    h5{
+        font-weight:bolder;
+    }
+    .card-text{
+        font-size: small;
+        font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    }
+   
+ 
+    
+   .cardtwo 
+    hr {
+    margin: 0
+    }
+    .card-body h4 a{
+      color: #6e45e1;
+      text-decoration: none;
+    }
+    .homepg {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    
+    }
+     .count {
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    font-family: "Courier New", Courier, monospace;
+  }
+</style>
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+    rel="stylesheet">
+<div class="container">
+  <div class="heading"><h1>FELLOWSHIPS 🤖</h1></div>
+
+  <div class="count">Fellowships Count: {{ count }} 😲</div>
+    <div class="fullcontainer">
+        {% for post in fellowships %}
+        <div class="grid">
+            <div class="card cardtwo">
+                <div class="hover_color_bubble"></div>
+                <div class="card-body">
+                    <h4><a href="{% url 'specific_fellowship' post.name %}">{{ post.name }}</a></h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Role: {{ post.role }}</h6>
+                    <p class="card-text ">COMPANY:{{ post.comapny_org }}</p>
+                    <p class="card-text">Eligibility:{{post.eligibility}}</p>
+                   
+                    <hr>
+                    <!-- <p>Referral Link: <a href=https://{{ post.referral_link }} class="card-l ink">{{ post.referral_link }}</a> -->
+                    </p>
+                    <div class="card-footer text-muted" style="font-size:10px; text-align:left">Posted on: {{ post.date_posted }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

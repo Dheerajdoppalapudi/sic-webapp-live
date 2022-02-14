@@ -1,0 +1,561 @@
+{% extends "page/base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  @import url("https://rsms.me/inter/inter.css");
+    .fullcontainer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .fullcontainer > div {
+        margin: 10px;
+        padding: 10px;
+        width: 350px;
+    }
+    .card-title{
+        color: rgb(61, 61, 61);
+        text-decoration: none;
+    }
+    .card-subtitle{
+        color: #2092ed;
+    }
+   
+    .cardtwo {
+   
+    box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+      0 5px 15px 0 rgba(37, 44, 97, 0.15);
+    border-radius: 15px;
+    margin: 8px;
+    padding: 10px 15px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 265px;
+    transition: 0.7s;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    
+    }
+    .cardtwo:hover {
+        /* background: #46a3eb; */
+        /* background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%); */
+
+    color: rgb(47, 47, 47);
+    transform: scale(1.1);
+    z-index: 9;
+    }
+    
+    .cardtwo:hover::before{
+        background: rgb(85 108 214 / 10%);
+    }
+    .cardtwo:before {
+    content: "";
+    position: absolute;
+    background: rgb(85 108 214 / 5%);
+    width: 170px;
+    height: 400px;
+    z-index: -1;
+    transform: rotate(42deg);
+    right: -56px;
+    top: -23px;
+    border-radius: 35px;
+  }
+  .hover_color_bubble {
+    position: absolute;
+    background: rgb(54 81 207 / 15%);
+    width: 100rem;
+    height: 100rem;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    top: 16rem;
+    border-radius: 50%;
+    transform: rotate(-36deg);
+    left: -18rem;
+    transition: 0.7s;
+  }
+  .cardtwo:hover .hover_color_bubble {
+    top: 0rem;
+  }
+    h5{
+        font-weight:bolder;
+    }
+    .card-text{
+        font-size: small;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        
+    }
+    .card-texttwo{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: small;
+        font-weight: bold;
+
+    }
+    .red{
+        color: rgb(182, 1, 1);
+    }
+    .green{
+        color: #28a745;
+    }
+    .bn41 {
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: large;
+  padding: 4px 6px;
+  color: rgb(51, 51, 51) !important;
+}
+
+.bn41::after {
+  max-width: 100%;
+  height: 2px;
+  display: block;
+  content: "";
+  background: linear-gradient(-90deg, #ff9100 0%, #f10366 50%, #6173ff 100%);
+  opacity: 1;
+  margin-bottom: -6px;
+  margin-top: 1px;
+}
+
+.bn40div {
+  display: flex;
+}
+
+    /* .card-texttwo:nth-of-type(1){
+        color: #28a745;
+    }
+    .card-texttwo:nth-of-type(2){
+        color: rgb(182, 1, 1);
+    } */
+    
+   .cardtwo 
+    hr {
+    margin: 0
+    }
+    .cardtwo 
+    p {
+    font-weight: 500;
+    }
+    .homepg {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    
+    }
+
+
+    /* beshaq */
+
+
+.masthead {
+    padding: 3rem 0 7rem;
+    position: relative;
+    /* background-color: #dd3d31;
+    background-image: url(https://startbootstrap.com/assets/img/overlay.svg), linear-gradient(45deg, #dd3d31 0%, #d22f23 100%); */
+    background-color: #00DBDE;
+background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+
+
+    background-size: cover;
+    z-index: 0
+}
+
+.masthead svg.wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0
+}
+
+.masthead h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.1;
+    z-index: 1
+}
+
+.masthead h2 {
+    color: rgba(255, 255, 255, .6);
+    font-weight: 600;
+    z-index: 1;
+    font-size: 1.2rem
+}
+
+.masthead a {
+    color: rgba(255, 255, 255, .8);
+    text-decoration: underline;
+    z-index: 1
+}
+
+.masthead a:hover {
+    color: #fff
+}
+
+.masthead a:active {
+    text-decoration: none
+}
+
+@media(min-width:992px) {
+    .masthead h1 {
+        font-size: 3rem
+    }
+    .masthead h2 {
+        font-size: 1.5rem
+    }
+}
+
+.masthead .masthead-cards {
+    position: relative;
+    z-index: 1
+}
+
+.masthead .masthead-cards .shape {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, .3);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 30% 70% 70% 30%/30% 30% 70% 70%
+}
+
+.masthead .masthead-cards .card {
+    opacity: 1;
+    font-size: .8rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: .05rem;
+    color: #212529;
+    transition: .15s all
+}
+
+.masthead .masthead-cards .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem
+}
+
+.masthead .masthead-cards .card:active {
+    margin-top: inherit;
+    margin-bottom: inherit
+}
+
+.masthead .masthead-cards .card.border-bottom-blue:hover {
+    color: #2092ed
+}
+
+.masthead .masthead-cards .card.border-bottom-green:hover {
+    color: #28a745
+}
+
+.masthead .masthead-cards .card.border-bottom-red:hover {
+    color: #dd3d31
+}
+
+.masthead .masthead-cards .card.border-bottom-yellow:hover {
+    color: #ffc107
+}
+
+.masthead-page {
+    padding: 1rem 0 4rem
+}
+.selectStreamButtons button{
+    margin-bottom: 20px;
+}
+.bn30 {
+  border: 5em;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.7em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: rgba(255, 255, 255, 0.623);
+}
+
+.bn30 .text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+}
+
+.bn30:after {
+  content: "";
+  border-radius: 18px;
+  position: absolute;
+  margin: 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: #101010;
+}
+
+.bn30:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+
+.bn30:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+}
+.count{
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+@media(min-width:992px) {
+    .masthead-page h1 {
+        font-size: 2.5rem
+    }
+}
+
+.border-bottom-yellow {
+    border-color: #ffc107!important;
+}
+
+.border-bottom-red {
+    border-color: #dd3d31!important;
+}
+
+.border-bottom-blue {
+    border-color: #2092ed!important;
+}
+
+.border-bottom-green {
+    border-color: #28a745!important;
+}
+
+.border-bottom-blue, .border-bottom-green, .border-bottom-red, .border-bottom-yellow {
+    border-bottom: .4rem solid!important;
+}
+.shadow-lg {
+    box-shadow: 0 2rem 1.5rem -1.5rem rgba(33,37,41,.15),0 0 1.5rem .5rem rgba(33,37,41,.05)!important;
+}
+.border-0 {
+    border: 0!important;
+}
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+    height: 50px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 15px;
+    left: 16px
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 40px;
+    width: 110px;
+    background: blue
+}
+
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+
+<header class="masthead">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 py-5">
+                <h1 class="mb-4">Let's Find An Internship For You!!</h1>
+                <h2 class="m-0">"Let's start to gain a good insight into how the industry works already." <a
+                        href="/themes">Exams</a>, <a href="/templates">Certifications</a>, and <a href="/snippets">Hackathons</a>
+                    for you to use on any project, <a href="/guides">Events</a> to help you learn more about designing
+                    and developing.</h2>
+            </div>
+            <div class="col-lg-5">
+                <div class="py-5 px-4 masthead-cards">
+                    <div class="d-flex">
+                        <a href="#" class="w-50 pr-3 pb-4">
+                            <div class="card border-0 border-bottom-red shadow-lg shadow-hover">
+                                <div class="card-body text-center">
+                                    <div class="text-center">
+                                        <i class="fa fa-pencil fa-4x my-2"></i>
+                                    </div>
+                                    EXAMS
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="w-50 pl-3 pb-4">
+                            <div class="card border-0 border-bottom-blue shadow-lg shadow-hover">
+                                <div class="card-body text-center">
+                                    <div class="text-center">
+                                        <i class="fa fa-th fa-4x my-2"></i>
+                                    </div>
+                                    COURSES
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="d-flex">
+                        <a href="#" class="w-50 pr-3">
+                            <div class="card border-0 border-bottom-yellow shadow-lg shadow-hover">
+                                <div class="card-body text-center">
+                                    <div class="text-center">
+                                        <i class="fa fa-4x fa-code my-2"></i>
+                                    </div>
+                                    Hackathons
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="w-50 pl-3">
+                            <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
+                                <div class="card-body text-center">
+                                    <div class="text-center">
+                                        <i class="fa fa-4x fa-list my-2"></i>
+                                    </div>
+                                    EVENTS
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="shape"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <svg style="pointer-events: none" class="wave" width="100%" height="50px" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
+        <defs>
+            <style>
+                .a {
+                    fill: none;
+                }
+                
+                .b {
+                    clip-path: url(#a);
+                }
+                
+                .c,
+                .d {
+                    fill: #f9f9fc;
+                }
+                
+                .d {
+                    opacity: 0.5;
+                    isolation: isolate;
+                }
+
+
+            </style>
+            <clipPath id="a">
+                <rect class="a" width="1920" height="75"></rect>
+            </clipPath>
+        </defs>
+        <title>wave</title>
+        <g class="b">
+            <path class="c"
+                  d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48"></path>
+        </g>
+        <g class="b">
+            <path class="d"
+                  d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10"></path>
+        </g>
+        <g class="b">
+            <path class="d"
+                  d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24"></path>
+        </g>
+        <g class="b">
+            <path class="d"
+                  d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150"></path>
+        </g>
+    </svg>
+</header>
+<div class="container py-4">
+    <!--<div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% for branch in branches %}
+                    <a class="dropdown-item" href="{% url 'internship_branch' branch %}">{{ branch }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>-->
+    <div class="selectStreamButtons">
+       
+    {% for branch in branches %}
+            <a class="bn40" href="{% url 'internship_branch' branch %}"><button class="bn30">{{branch}}</button></a>
+        {% endfor %}
+    </div>
+    <hr/>
+    <div>
+        <form action="{% url 'page-internships' %}" method="POST">
+            {% csrf_token %}
+            <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search Here" name="search-bar" autocomplete="off">
+            <button type="submit" class="btn btn-dark">Search</button> -->
+            <div class="container">
+                <div class="row height d-flex justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <div class="search"> <i class="fa fa-search"></i> <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search Here" name="search-bar" autocomplete="off"> <button type="submit" class="btn btn-primary">Search</button> </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div><h1>{{ message }}</h1></div>
+
+    <div class="count">Internships Count: {{ count }} 😲</div>
+
+    </div>
+    <div class="fullcontainer">
+        {% for post in posts %}
+        <div class="grid">
+            <div class="card cardtwo">
+                <div class="hover_color_bubble"></div>
+                <div class="card-body">
+                    <h5 class="bn40div"><a class="card-title bn41" href="{% url 'specific_internship' post.title %}">{{ post.title }}</a></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Role: {{ post.role }}</h6>
+                    <p class="card-text "><i class="fa fa-building mr-3 text-primary"></i>      <b>Company</b>:<br/>{{ post.comapny_org }}</p>
+                    <p class="card-text"> <i class="fa fa-graduation-cap mr-3 text-primary"></i> <b>Eligibility</b>:<br/>{{post.eligibility}}</p>
+                    <hr>
+                    <p class="card-texttwo green"><b>Registration open</b>: {{ post.registration_open}}</p>
+                    <p class="card-texttwo red"><b>Registration close</b>: {{ post.registration_close}}</p>
+                    <hr>
+                    <!-- <p>Referral Link: <a href=https://{{ post.referral_link }} class="card-l ink">{{ post.referral_link }}</a> -->
+                    </p>
+                    <div class="card-footer text-muted" style="font-size:10px; text-align:left">Posted on: {{ post.date_posted }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
