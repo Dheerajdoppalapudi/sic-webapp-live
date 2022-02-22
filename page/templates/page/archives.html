@@ -29,6 +29,7 @@
     padding: 3rem;
 }
 .mainContainer h1{
+  font-family: 'Prompt', sans-serif;
     font-weight: bolder;
     margin-bottom: 2rem;
     color: hsl(229, 6%, 66%);
@@ -70,6 +71,7 @@ font-size: x-small;}
 /* stack cars */
 
 .tariffCards {
+
   /* position: absolute; */
   margin: 20px;
   top: 50%;
@@ -82,6 +84,7 @@ font-size: x-small;}
 }
 .tariffCards a{
   color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .tariffCards:after {
   position: absolute;
@@ -256,6 +259,9 @@ input[type="date"]
 <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
     rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Prompt:wght@400;600&display=swap" rel="stylesheet">
 <div class="mainContainer">
 <h1>
 ARCHIVES 📚
@@ -302,9 +308,9 @@ ARCHIVES 📚
             <form action="{% url 'selector' %}" method="post">
                 {% csrf_token %}
                 <label for="from-date">From Date: </label>
-                <input type="date" id="from-date" name="from-date">
+                <input type="date" id="from-date" name="from-date" required>
                 <label for="to-date">To Date: </label>
-                <input type="date" id="to-date" name="to-date">
+                <input type="date" id="to-date" name="to-date" required>
                 <button class="button_base" type="submit">Submit</button>
                 <input type="text" name='selection' value="Internship" style="visibility: hidden">
             </form>
@@ -339,9 +345,9 @@ ARCHIVES 📚
           <form action="{% url 'selector' %}" method="post">
               {% csrf_token %}
               <label for="from-date">From Date: </label>
-              <input type="date" id="from-date" name="from-date">
+              <input type="date" id="from-date" name="from-date" required>
               <label for="to-date">To Date: </label>
-              <input type="date" id="to-date" name="to-date">
+              <input type="date" id="to-date" name="to-date" required>
               <button class="button_base" type="submit">Submit</button>
               <input type="text" name='selection' value="Internship" style="visibility: hidden">
           </form>
@@ -351,15 +357,15 @@ ARCHIVES 📚
     <div class="fullcontainer">
         {% for post in fellowships %}
         <div class="grid">
-            <div class="card fellowcard  "id="fellowships"">
+            <div class="card fellowcard" id="fellowships">
                 <div class="card-body">
                     <h5><a class="card-title" href="{% url 'specific_fellowship' post.name %}">Title: {{ post.name }}</a></h5>
                     <h6 class="card-subtitle mb-2 text-muted">university_organization: {{ post.university_organization }}</h6>
                     <!-- <p class="card-text ">{{ post.description }}</p> -->
-                    <hr>
-                    <p class="card-text text-success">Eligibility: {{ post.eligibility }}</p>
-                    <p class="card-subtitle mb-2 text-muted">tenure: {{ post.duration }}</p>
-                    <p class="card-text text-danger">date of expiry: {{ post.date_of_expiry}}</p>
+<!--                    <hr>-->
+<!--                    <p class="card-text text-success">Eligibility: {{ post.eligibility }}</p>-->
+<!--                    <p class="card-subtitle mb-2 text-muted">tenure: {{ post.duration }}</p>-->
+<!--                    <p class="card-text text-danger">date of expiry: {{ post.date_of_expiry}}</p>-->
                     <hr>
                     <p>Referral Link: <a href=https://{{ post.refer_link }} class="card-link">{{ post.referral_link }}</a>
                     </p>
@@ -378,9 +384,9 @@ ARCHIVES 📚
           <form action="{% url 'selector' %}" method="post">
               {% csrf_token %}
               <label for="from-date">From Date: </label>
-              <input type="date" id="from-date" name="from-date">
+              <input type="date" id="from-date" name="from-date" required>
               <label for="to-date">To Date: </label>
-              <input type="date" id="to-date" name="to-date">
+              <input type="date" id="to-date" name="to-date" required>
               <button class="button_base" type="submit">Submit</button>
               <input type="text" name='selection' value="Internship" style="visibility: hidden">
           </form>
@@ -419,9 +425,9 @@ ARCHIVES 📚
           <form action="{% url 'selector' %}" method="post">
               {% csrf_token %}
               <label for="from-date">From Date: </label>
-              <input type="date" id="from-date" name="from-date">
+              <input type="date" id="from-date" name="from-date" required>
               <label for="to-date">To Date: </label>
-              <input type="date" id="to-date" name="to-date">
+              <input type="date" id="to-date" name="to-date" required>
               <button class="button_base" type="submit">Submit</button>
               <input type="text" name='selection' value="Internship" style="visibility: hidden">
           </form>
@@ -431,15 +437,15 @@ ARCHIVES 📚
     <div class="fullcontainer">
         {% for post in scholarships %}
         <div class="grid">
-            <div class="card scholarshipcard  "id="scholarships">
+            <div class="card scholarshipcard"  id="scholarships">
                 <div class="card-body">
                     <h5><a class="card-title" href="{% url 'specific_scholarship' post.name %}">Title: {{ post.name }}</a></h5>
                     <h6 class="card-subtitle mb-2 text-muted">country: {{ post.country }}</h6>
                     <!-- <p class="card-text ">{{ post.description }}</p> -->
-                    <hr>
-                    <p class="card-text text-success">Eligibility: {{ post.eligibility }}</p>
-                    <p class="card-text text-info">Stipend: {{ post.stipend }}</p>
-                    <p class="card-text text-danger">Registration close: {{ post.end_date }}</p>
+<!--                    <hr>-->
+<!--                    <p class="card-text text-success">Eligibility: {{ post.eligibility }}</p>-->
+<!--                    <p class="card-text text-info">Stipend: {{ post.stipend }}</p>-->
+<!--                    <p class="card-text text-danger">Registration close: {{ post.end_date }}</p>-->
                     <hr>
                     <p>Referral Link: <a href=https://{{ post.refer_link }} class="card-link">{{ post.referral_link }}</a>
                     </p>
@@ -455,12 +461,12 @@ ARCHIVES 📚
 </div>
 <script>
   var internships = document.getElementById("internships");
-  internships.scrollIntoView(); 
-  // var scholarships = document.getElementById("scholarships");
-  // scholarships.scrollIntoView(); 
-  // var hackathons = document.getElementById("hackathons");
-  // hackathons.scrollIntoView(); 
-  // var fellowships = document.getElementById("fellowships");
-  // fellowships.scrollIntoView(); 
+  internships.scrollIntoView();
+  var scholarships = document.getElementById("scholarships");
+  scholarships.scrollIntoView();
+  var hackathons = document.getElementById("hackathons");
+  hackathons.scrollIntoView();
+  var fellowships = document.getElementById("fellowships");
+  fellowships.scrollIntoView();
 </script>
 {% endblock content %}
