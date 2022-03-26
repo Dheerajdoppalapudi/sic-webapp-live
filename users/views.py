@@ -25,6 +25,7 @@ def register(request):
 #     }
 #     return render(request, 'users/events.html', context)
 
+@login_required
 def events(request):
     # current_user = request.user
     context = {
