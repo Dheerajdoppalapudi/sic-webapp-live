@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-    'dbbackup',
+#     'dbbackup',
 
     # google auth apps
     # 'django.contrib.sites',
@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR/'backup'}
+# DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR/'backup'}
 
 SITE_ID = 1
 
