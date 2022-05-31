@@ -1,5 +1,17 @@
-{% extends "page/base.html" %} {% block content %} {% load static %}
+{% extends "page/base.html" %}
+{% block content %}
+{% load static %}
 <style>
+    .fullcontainer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .fullcontainer > div {
+        margin: 10px;
+        padding: 10px;
+        width: 350px;
+    }
   body {
     background: #f4f7fd;
     /* margin-top: 20px; */
@@ -469,9 +481,8 @@
   href="https://fonts.googleapis.com/css2?family=Anton&family=Prompt:wght@400;600&display=swap"
   rel="stylesheet"
 />
-<div>
-  <div class="heading"><h1>SCHOLARSHIPS 😀</h1></div>
-  <!--<div>
+<div class="container py-4">
+    <!--<div>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -484,58 +495,43 @@
             </div>
         </div>
     </div>-->
-  <div class="count">Scholarship Count: {{ count }} 😲</div>
-  <div class="selectButtons">
-    {% for branch in branches %}
-    <a class="bn40" href="{% url 'scholarship_branch' branch %}"><button class="bn30">{{ branch }}</button></a
-    >
+    <div class="heading"><h1>Career fulfillment 😀</h1></div>
+    <div class="count">Count: {{ count }} 😲</div>
 
-    {% endfor %}
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    {% for post in scholarships %}
-    <div class="col-lg-4">
-      <div class="card card-margin">
-        <div class="card-header no-border">
-          <h6 class="card-title hover-underline-animation">{{ post.name }}</h6>
-        </div>
-        <div class="card-body pt-0">
-          <div class="widget-49">
-            <div class="widget-49-title-wrapper">
-              <div class="widget-49-date-primary">
-                <span class="widget-49-date-day">{{ post.end_date|date:"d" }}</span>
-                <span class="widget-49-date-month">{{ post.end_date|date:"M" }}</span>
-              </div>
-              <div class="widget-49-meeting-info">
-                <span class="widget-49-pro-title">{{ post.country }}</span>
-                <span class="widget-49-meeting-time">{{ post.date_posted }}</span>
-              </div>
-            </div>
-            <ol class="widget-49-meeting-points">
-              <li class="widget-49-meeting-item">
-                <span>Stipend: {{ post.stipend }} </span>
-              </li>
-              <li class="widget-49-meeting-item">
-                <span>Eligibility: {{ post.eligibility }}</span>
-              </li>
-              <li class="widget-49-meeting-item">
-                <span>Branch: {{ post.branch }}</span>
-              </li>
-            </ol>
-            <div class="widget-49-meeting-action">
-              <a
-                href="{% url 'specific_scholarship' post.name %}" target="_blank"
-                class="btn btn-sm btn-flash-border-primary"
-                >View Details</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="selectStreamButtons">
+
+    {% for branch in branches %}
+            <a class="bn40" href="{% url 'internship_branch' branch %}"><button class="bn30">{{branch}}</button></a>
+        {% endfor %}
     </div>
-    {% endfor %}
-  </div>
+    </div>
+    <div class="fullcontainer">
+        {% for post in careerful %}
+        <div class="grid">
+            <div class="card cardtwo">
+                <div class="hover_color_bubble"></div>
+                <div class="card-body">
+                    <h5 class="bn40div"><a class="card-title bn41" href="{% url 'specific_careerful' post.corporate %}" target="_blank">{{ post.corporate }}</a></h5>
+                    {% if post.role %}
+                    <h6 class="card-subtitle mb-2 text-muted">Role: {{ post.role }}</h6>
+                    {% else %}
+                    {% endif %}
+                    <p class="card-text "><i class="fa fa-building mr-3 text-primary"></i><b>Package</b>:<br/>{{ post.package }}</p>
+                    <p class="card-text"> <i class="fa fa-graduation-cap mr-3 text-primary"></i> <b>Eligibility</b>:<br/>{{post.eligibility}}</p>
+                    <hr>
+                    {% if post.registration_open %}
+                        <p class="card-texttwo green"><b>Registration open</b>: {{ post.registration_open}}</p>
+                    {% else %}{% endif %}
+                    <p class="card-texttwo red"><b>Registration close</b>: {{ post.registration_close}}</p>
+                    <hr>
+                    <!-- <p>Referral Link: <a href=https://{{ post.referral_link }} class="card-l ink">{{ post.referral_link }}</a> -->
+                    </p>
+                    <div class="card-footer text-muted" style="font-size:10px; text-align:left">Posted on: {{ post.date_posted }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}

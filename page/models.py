@@ -1,15 +1,27 @@
 from django.db import models
 from django.utils import timezone
+from django.dispatch import receiver
+from multiselectfield import MultiSelectField
+from django.db.models.signals import post_save, pre_save
 
 BRANCH_CHOICES = (
     ('Engineering', 'Engineering'),
     ('Management', 'Management'),
-    ('Medical and Para-medical', 'Medical and Para-medical'),
+    ('Medical and Paramedical', 'Medical and Paramedical'),
     ('Humanities and Social Sciences', 'Humanities and Social Sciences'),
     ('Law', 'Law'),
     ('Sciences', 'Sciences'),
     ('Pharmacy', 'Pharmacy'),
-    ('Nursing', 'Nursing')
+    ('Nursing', 'Nursing'),
+    ('Everyone', 'Everyone'),
+)
+
+BROUGHT_TO_YOU_BY = (
+    ('Student Internship Club', 'Student Internship Club'),
+    ('GCGC', 'GCGC'),
+    ('CGC Visakhapatnam', 'CGC Visakhapatnam'),
+    ('CGC Hyderabad', 'CGC Hyderabad'),
+    ('CGC Bengaluru', 'CGC Bengaluru')
 )
 
 class Internship(models.Model):
@@ -22,11 +34,32 @@ class Internship(models.Model):
     registration_close = models.DateField()
     eligibility = models.TextField()
     referral_link = models.CharField(max_length=100, blank=False)
-    branch = models.CharField(max_length=50, choices=BRANCH_CHOICES, default='Everyone')
+    # branch = models.CharField(max_length=50, choices=BRANCH_CHOICES, default='Everyone')
     date_posted = models.DateTimeField(default=timezone.now, blank=False, editable=False)
+    multibranch = MultiSelectField(choices=BRANCH_CHOICES, blank=True, default='Everyone')
+    brought_to_you_by = models.CharField(max_length=70, choices=BROUGHT_TO_YOU_BY, blank=True, default='Student Internship Club')
+
+    # def save(self ,*args, **kwargs):
+    #     tempstr = self.multibranch
+    #     for i in tempstr:
+    #         tempins = self
+    #         tempins.multibranch = i
+    #         super(Internship,tempins).save(*args, **kwargs)
 
     def __str__(self):
         return f'Title: {self.title}'
+
+# def model_created(sender, **kwargs):
+#     the_instance = kwargs['instance']
+#     print("this is outside", the_instance.title, the_instance.multibranch)
+#     model = Internship()
+#     model.branch = the_instance.multibranch
+#     model.save()
+#
+#     if kwargs['created']:
+#         print(the_instance.title)
+
+# post_save.connect(model_created, sender=Internship)
 
 class Member(models.Model):
     name = models.CharField(max_length=50, blank=False)
@@ -106,9 +139,26 @@ class Scolarships(models.Model):
     end_date = models.DateField()
     country = models.CharField(max_length=50)
     branch = models.CharField(max_length=50, choices=BRANCH_CHOICES, default='Everyone')
+    # multibranch = MultiSelectField(choices=BRANCH_CHOICES, blank=True, default='Everyone')
     referral_link = models.CharField(max_length=150, null=True)
     link_to_apply = models.CharField(max_length=150)
     date_posted = models.DateTimeField(default=timezone.now, blank=False, editable=False)
 
     def __str__(self):
         return f'Title: {self.name}'
+
+class CareerFul(models.Model):
+    corporate = models.CharField(max_length=75, blank=False)
+    # comapny_org = models.CharField(max_length=150, blank=True)
+    role = models.CharField(max_length=50)
+    package = models.CharField(max_length=80)
+    format = models.CharField(max_length=50)
+    description = models.TextField()
+    registration_open = models.DateField(null=True, blank=True)
+    registration_close = models.DateField()
+    eligibility = models.TextField()
+    referral_link = models.CharField(max_length=100, blank=False)
+    # branch = models.CharField(max_length=50, choices=BRANCH_CHOICES, default='Everyone')
+    date_posted = models.DateTimeField(default=timezone.now, blank=False, editable=False)
+    multibranch = MultiSelectField(choices=BRANCH_CHOICES, blank=True, default='Everyone')
+    brought_to_you_by = models.CharField(max_length=70, choices=BROUGHT_TO_YOU_BY, blank=True, default='Student Internship Club')
